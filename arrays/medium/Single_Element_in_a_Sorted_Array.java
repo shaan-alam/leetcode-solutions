@@ -6,7 +6,6 @@ public class Single_Element_in_a_Sorted_Array {
   public int singleNonDuplicate(int[] nums) {
 
     ArrayList<Integer> list = new ArrayList<>();
-    int result = 0;
     int sum = 0;
     int expectedSum = 0;
 

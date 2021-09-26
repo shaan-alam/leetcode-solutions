@@ -5,23 +5,19 @@ import java.util.ArrayList;
 public class Single_Element_in_a_Sorted_Array {
   public int singleNonDuplicate(int[] nums) {
 
-    ArrayList<Integer> list = new ArrayList<>();
-    int sum = 0;
-    int expectedSum = 0;
+    int start = 0;
+    int end = nums.length - 1;
 
-    for (int x : nums) {
-      if (!list.contains(x)) {
-        list.add(x);
+    while (start < end) {
+      int mid = (start + end) / 2;
+
+      if ((mid % 2 == 0 && nums[mid] == nums[mid + 1]) || (mid % 2 != 0 && nums[mid] == nums[mid - 1])) {
+        start = mid + 1;
+      } else {
+        end = mid;
       }
-
-      sum += x;
     }
 
-    for (int x : list) {
-      expectedSum += 2 * x;
-    }
-
-    return expectedSum - sum;
-
+    return nums[start];
   }
 }

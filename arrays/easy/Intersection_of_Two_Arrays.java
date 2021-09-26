@@ -1,29 +1,39 @@
 package easy;
+
 /* 
-https://leetcode.com/problems/intersection-of-two-arrays/
+  Link - https://leetcode.com/problems/intersection-of-two-arrays/
 */
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
-public class Intersection_of_Two_Arrays {
+class Intersection_of_Two_Arrays {
   public int[] intersection(int[] nums1, int[] nums2) {
-    ArrayList<Integer> result = new ArrayList<Integer>();
-    int[] big = nums1.length > nums2.length ? nums1 : nums2;
-    int[] small = nums1.length < nums2.length ? nums1 : nums2;
+    ArrayList<Integer> list = new ArrayList<Integer>();
 
-    for (int i = 0; i < big.length; i++) {
-      for (int j = 0; j < small.length; j++) {
-        if (big[i] == small[j] && !result.contains(big[i])) {
-          result.add(big[i]);
-        }
+    Arrays.sort(nums1);
+    Arrays.sort(nums2);
+
+    int i = 0;
+    int j = 0;
+
+    while (i < nums1.length && j < nums2.length) {
+      if (nums1[i] == nums2[j] && !list.contains(nums1[i])) {
+        list.add(nums1[i]);
+        i++;
+        j++;
+      } else if (nums1[i] > nums2[j]) {
+        j++;
+      } else {
+        i++;
       }
     }
 
-    int[] list = new int[result.size()];
-    for (int i = 0; i < result.size(); i++) {
-      list[i] = result.get(i);
+    int[] result = new int[list.size()];
+    for (int x = 0; x < list.size(); x++) {
+      result[x] = list.get(x);
     }
 
-    return list;
+    return result;
   }
 }

@@ -1,11 +1,10 @@
-package easy;
+public class Peak {
+  public static void main(String[] args) {
+    int[] arr = { 0,2, 1, 0 };
+    System.out.println(findPeak(arr));
+  }
 
-/* 
-  Link - https://leetcode.com/problems/peak-index-in-a-mountain-array/
-*/
-
-public class Peak_Index_In_A_Mountain_Array {
-  public int peakIndexInMountainArray(int[] arr) {
+  static int findPeak(int[] arr) {
     int start = 0;
     int end = arr.length - 1;
 
@@ -19,6 +18,6 @@ public class Peak_Index_In_A_Mountain_Array {
       }
     }
 
-    return start;
+    return arr[start];
   }
 }

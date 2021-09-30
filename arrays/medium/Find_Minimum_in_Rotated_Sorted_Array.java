@@ -6,14 +6,32 @@ package medium;
 
 public class Find_Minimum_in_Rotated_Sorted_Array {
   public int findMin(int[] nums) {
-    int min = nums[0];
+    int pivot = findPivot(nums);
+    return nums[(pivot + 1) % nums.length];
+  }
 
-    for (int x : nums) {
-      if (x < min) {
-        min = x;
+  static int findPivot(int[] arr) {
+    int start = 0;
+    int end = arr.length - 1;
+
+    while (start <= end) {
+      int mid = (start + end) / 2;
+
+      if (mid < end && arr[mid] > arr[mid + 1]) {
+        return mid;
+      }
+
+      if (mid > start && arr[mid] < arr[mid - 1]) {
+        return mid - 1;
+      }
+
+      if (arr[mid] <= arr[start]) {
+        end = mid - 1;
+      } else {
+        start = mid + 1;
       }
     }
 
-    return min;
+    return -1;
   }
 }
